@@ -45,7 +45,7 @@ RUN set -x \
 #    apt-get -y install cuda
 
 # Install yolo v8
-RUN pip3 install ultralytics==8.0.178
+#RUN pip3 install ultralytics==8.0.178
 
 RUN set -x \
 	&& apt-get update \
