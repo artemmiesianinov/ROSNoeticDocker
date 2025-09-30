@@ -90,8 +90,8 @@ RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/Projects/ardrone_w
 
 RUN echo "source /home/user/Projects/ardrone_ws/devel/setup.bash --extend" >> /home/user/.bashrc
 
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/Projects/ardrone_ws/; . ./devel/setup.bash; catkin_make'
-RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/Projects/ardrone_ws/; . ./devel/setup.bash; catkin_make'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/Projects/ardrone_ws/; . ./devel/setup.bash; catkin_make -j1'
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd /home/user/Projects/ardrone_ws/; . ./devel/setup.bash; catkin_make -j1'
 
 # Adding a workspace for the students.
 RUN mkdir -p Projects/catkin_ws/src 
