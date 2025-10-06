@@ -32,7 +32,28 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates wget nano less unzip \
     elementary-xfce-icon-theme adwaita-icon-theme hicolor-icon-theme \
     thunar-volman gvfs gvfs-backends tumbler \
+    file-roller xarchiver unzip p7zip-full tar bzip2 \
+    firefox \
     && rm -rf /var/lib/apt/lists/*
+
+# --- Create desktop entry for Firefox (with --no-sandbox) ---
+RUN mkdir -p /usr/share/applications && \
+    cat > /usr/share/applications/firefox-nosandbox.desktop <<'EOF'
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Firefox (No Sandbox)
+Comment=Browse the Web
+Exec=firefox --no-sandbox %u
+Icon=firefox
+Terminal=false
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;x-scheme-handler/http;x-scheme-handler/https;
+StartupNotify=true
+EOF
+
+# --- Make it default browser ---
+RUN xdg-settings set default-web-browser firefox-nosandbox.desktop || true
 
 # Install some handy tools.
 RUN set -x \
